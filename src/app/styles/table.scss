@@ -79,13 +79,6 @@
       tr {
         transition: background-color 0.2s ease;
 
-        &:hover {
-          background-color: rgba($te-primary, 0.05);
-          td.sticky-left {
-            background-color: rgba($te-primary, 0.05);
-          }
-        }
-
         td {
           color: $te-neutral;
           z-index: 1;
@@ -125,9 +118,10 @@
             position: sticky;
             left: 0;
             border-bottom: 1px solid #e0e0e0;
-            z-index: 3;
+            z-index: 2;
             font-weight: 600;
             color: $te-primary;
+            background: #fff;
 
             .name {
               overflow: hidden;
@@ -184,6 +178,13 @@
         &:nth-last-child(1) {
           td {
             border-bottom: 1px solid #e0e0e0;
+          }
+        }
+
+        &:hover {
+          background-color: rgba($te-primary, 0.05);
+          td.sticky-left {
+            background-color: rgba($te-primary, 0.05);
           }
         }
       }
