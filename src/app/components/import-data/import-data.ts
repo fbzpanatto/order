@@ -39,10 +39,14 @@ export class ImportData {
     const input = event.target as HTMLInputElement;
     if (input.files && input.files.length > 0) {
       const file = input.files[0];
-      if (file.type !== 'text/csv') {
-        alert('Por favor, selecione um arquivo .csv');
+
+      // Verificar extensão do arquivo ao invés do tipo MIME
+      const fileName = file.name.toLowerCase();
+      if (!fileName.endsWith('.csv') && !fileName.endsWith('.txt')) {
+        alert('Por favor, selecione um arquivo .csv ou .txt');
         return;
       }
+
       this.readFile(file);
     }
   }
@@ -63,23 +67,31 @@ export class ImportData {
   }
 
   processFileContent(content: string) {
+    console.log('Conteúdo do arquivo:', content);
+
     this.tableData = content
       .split('\n')
       .filter(row => row.trim() !== '')
       .reduce((acc: Order[], prev) => {
         const el = prev.split(',')
-        acc.push({
-          idClientProduct: el[0].trim(),
-          idTeProduct: el[1].trim(),
-          cover: Number(el[2].trim().replace(',', '.')), // Convert comma decimal to dot
-          qtdDaily: Number(el[3].trim()),
-          description: el[4].trim(),
-          clientCommentary: el[5].trim(),
-          teCommentary: el[6].trim(),
-          qtdDelivery: Number(el[7].trim())
-        })
+
+        // Verificar se a linha tem pelo menos 8 colunas
+        if (el.length >= 8) {
+          acc.push({
+            idClientProduct: el[0].trim(),
+            idTeProduct: el[1].trim(),
+            cover: Number(el[2].trim().replace(',', '.')), // Convert comma decimal to dot
+            qtdDaily: Number(el[3].trim()),
+            description: el[4].trim(),
+            clientCommentary: el[5].trim(),
+            teCommentary: el[6].trim(),
+            qtdDelivery: Number(el[7].trim())
+          })
+        }
         return acc
       }, [])
+
+    console.log('Dados processados:', this.tableData);
   }
 
   get title() { return 'Importar Dados' }
