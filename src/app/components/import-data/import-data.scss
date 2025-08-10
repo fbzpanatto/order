@@ -7,7 +7,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #f5f7fa;
+  background: $te-light;
 
   .table-content {
     table {
@@ -33,7 +33,8 @@
     overflow: auto;
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
     padding: 4vmin;
-    border: 1px solid #2ECC71;
+    border: 1px solid $te-primary;
+    background: white;
 
     .tutorial{
       display: flex;
@@ -44,37 +45,50 @@
 
       h2, h3, h4 {
         font-size: 2.5vmin;
+        font-family: 'Montserrat', sans-serif;
       }
 
       h2 {
+        color: $te-neutral;
+
         span {
-          background-color: #D3F3E2;
+          background-color: rgba($te-secondary, 0.2);
           padding: 8px;
           border-radius: 8px;
-          color: #2ECC71;
+          color: $te-primary;
           font-size: 3vmin;
+          font-weight: 600;
         }
       }
 
       h3 {
         display: flex;
         flex-direction: column;
+        color: $te-neutral;
+
         .decimal {
           text-align: right;
           font-size: 1.7vmin;
-          color: #555;
+          color: #666;
+          margin-top: 8px;
         }
       }
 
       h4 {
         display: flex;
         flex-direction: column;
-        gap: 16px;
-        padding: 16px;
-        background: #FFFFFF;
-        border-radius: 4px;
+        gap: 12px;
+        padding: 20px;
+        background: $te-light;
+        border-radius: 6px;
         color: #555;
-        border: 1px solid #cecece;
+        border: 1px solid rgba($te-primary, 0.2);
+        font-family: 'Courier New', monospace;
+        font-size: 1.8vmin;
+
+        span {
+          padding: 4px 0;
+        }
       }
     }
 
@@ -83,25 +97,27 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 1rem;
-      border-radius: 6px;
+      padding: 1.5rem;
+      border-radius: 8px;
       text-align: center;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-      background: linear-gradient(135deg, #1E63B5, #2ECC71);
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba($te-primary, 0.2);
+      background: linear-gradient(135deg, $te-primary, $te-secondary);
       width: 75vmin;
+      min-height: 120px;
 
       &:hover {
         transform: translateY(-5px);
         cursor: pointer;
-        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 8px 25px rgba($te-primary, 0.3);
+        background: linear-gradient(135deg, $te-dark, $te-primary);
       }
 
       .left-side {
         display: flex;
         align-items: center;
         justify-content: center;
-        margin-bottom: .8rem;
+        margin-bottom: 1rem;
 
         mat-icon {
           color: #fff;
@@ -126,6 +142,20 @@
   .mat-fab {
     bottom: 48px;
     right: 48px;
-    position: absolute;
+    position: fixed;
+    background: $te-primary;
+    color: white;
+    box-shadow: 0 4px 12px rgba($te-primary, 0.4);
+    transition: all 0.3s ease;
+
+    &:hover {
+      background: $te-dark;
+      transform: scale(1.1);
+      box-shadow: 0 6px 20px rgba($te-primary, 0.6);
+    }
+
+    mat-icon {
+      color: white;
+    }
   }
 }
