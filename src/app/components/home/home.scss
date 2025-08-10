@@ -1,0 +1,59 @@
+@use "../../styles/variables.scss" as *;
+
+.home-wrapper {
+  height: calc(100vh - $topBarHeight);
+  background: #f5f7fa;
+
+  .options-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2.5rem;
+    padding: 4rem;
+    justify-content: center;
+
+    .option {
+      background-color: transparent;
+      border-radius: 12px;
+      transition: all 0.3s ease;
+      text-align: center;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      &:hover {
+        cursor: pointer;
+        border: 1px solid #2ECC71;
+        transform: translateY(5px);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+      }
+
+      .left-side {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(135deg, #1E63B5, #2ECC71);
+        color: white;
+        border-radius: 50%;
+        width: 60px;
+        height: 60px;
+        margin-bottom: 1.2rem;
+
+        mat-icon {
+          font-size: 18px;
+          transform: scale(1.5);
+        }
+      }
+
+      .right-side {
+        h6 {
+          font-size: 1.1rem;
+          font-weight: 600;
+          color: #2C3E50;
+          margin: 0;
+          font-family: 'Montserrat', sans-serif;
+        }
+      }
+    }
+  }
+}

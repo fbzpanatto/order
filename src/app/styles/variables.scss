@@ -1,0 +1,40 @@
+$topBarHeight: 56px;
+
+@mixin card-style {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #FFFFFF;
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  gap: 16px;
+  padding: 20px;
+  color: #2C3E50;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: wrap;
+  height: 100%;
+  width: 100%;
+  border: 1px solid transparent;
+}
+
+@mixin filter-container {
+  width: 100vw;
+  padding: 4vmin;
+  display: flex;
+  gap: 16px;
+}
+
+@mixin center-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
+  line-height: 1;
+  font-size: 24px;
+  height: 24px;
+  width: 24px;
+}

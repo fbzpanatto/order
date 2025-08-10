@@ -1,0 +1,73 @@
+@use '../../styles/variables.scss' as *;
+
+:host {
+  background: #2C3E50;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+  height: $topBarHeight;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 4vmin;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+
+  .box {
+    display: flex;
+    align-items: center;
+
+    &.left-side, &.right-side {
+      button:has(mat-icon[svgIcon='home']),
+      button:has(mat-icon[svgIcon='exit_to_app']){
+        background: #1B64B3;
+        mat-icon {
+          @include center-icon;
+          color: #fff;
+        }
+      }
+
+      button:has(mat-icon[svgIcon='close']) {
+        background: transparent;
+        mat-icon {
+          @include center-icon;
+          color: #fff;
+        }
+      }
+    }
+
+    &.center {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+
+      .center1 {
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .custom-svg {
+          width: 40px;
+          height: 40px;
+        }
+      }
+
+      .center2 {
+        padding: 16px;
+        p {
+          font-size: 16px;
+          font-weight: 500;
+          color: #fff;
+          letter-spacing: 1px;
+          text-transform: uppercase;
+          margin: 0;
+          font-family: 'Montserrat', sans-serif;
+        }
+      }
+    }
+  }
+}

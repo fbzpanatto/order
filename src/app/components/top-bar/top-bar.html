@@ -1,0 +1,28 @@
+<div class="box left-side">
+  @if(home()){
+    <button routerLink="/home" mat-icon-button>
+      <mat-icon svgIcon="home"></mat-icon>
+    </button>
+  }
+</div>
+<div class="box center">
+  @if(!home()) {
+    <div class="center1">
+      <mat-icon class="custom-svg" svgIcon="g4"></mat-icon>
+    </div>
+  }
+  <div class="center2">
+    <p>{{ toolBarTitle() }}</p>
+  </div>
+</div>
+<!--<div class="box right-side">-->
+<!--  @if(logout()) {-->
+<!--    <button (click)="logoutFn()" mat-icon-button>-->
+<!--      <mat-icon svgIcon="exit_to_app"></mat-icon>-->
+<!--    </button>-->
+<!--  } @else if(!logout() && !home()) {-->
+<!--    <button class="tertiary" (click)="back()">-->
+<!--      <mat-icon svgIcon="close"></mat-icon>-->
+<!--    </button>-->
+<!--  }-->
+<!--</div>-->
