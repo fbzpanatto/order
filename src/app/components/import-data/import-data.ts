@@ -1,4 +1,4 @@
-import { Component, ElementRef, inject, ViewChild } from '@angular/core';
+import {Component, ElementRef, inject, signal, ViewChild} from '@angular/core';
 import { CommonModule } from "@angular/common";
 import { MatFabButton } from "@angular/material/button";
 import { Router } from "@angular/router";
@@ -18,7 +18,7 @@ import { TopBar } from "../top-bar/top-bar";
 export class ImportData {
 
   @ViewChild('fileInput') fileInput!: ElementRef;
-  tableData: Order[] = [];
+  #tableData = signal<Order[]>([])
 
   #toolBar = inject(ToolbarTitle)
   // #dialog = inject(DialogService);
@@ -61,13 +61,11 @@ export class ImportData {
   }
 
   async importData() {
-    console.log('Dados a serem importados:', this.tableData);
     // Código comentado para futura implementação do service
     await this.#router.navigate(['/home'])
   }
 
   processFileContent(content: string) {
-    console.log('Conteúdo do arquivo:', content);
 
     // Remover possível cabeçalho se existe
     const lines = content.split('\n').filter(row => row.trim() !== '');
@@ -82,7 +80,7 @@ export class ImportData {
       }
     }
 
-    this.tableData = lines
+    const data = lines
       .slice(startIndex)
       .reduce((acc: Order[], prev) => {
         const el = prev.split(',')
@@ -103,7 +101,15 @@ export class ImportData {
         return acc
       }, [])
 
-    console.log('Dados processados:', this.tableData);
+    this.setTableData(data)
+  }
+
+  get tableData() {
+    return this.#tableData.asReadonly();
+  }
+
+  setTableData(tableData: Order[]) {
+    this.#tableData.set(tableData);
   }
 
   get title() { return 'Importar Dados' }
