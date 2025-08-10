@@ -56,6 +56,12 @@ export class ImportData {
     reader.readAsText(file);
   }
 
+  async importData() {
+    console.log('Dados a serem importados:', this.tableData);
+    // Código comentado para futura implementação do service
+    await this.#router.navigate(['/home'])
+  }
+
   processFileContent(content: string) {
     this.tableData = content
       .split('\n')
@@ -74,36 +80,6 @@ export class ImportData {
         })
         return acc
       }, [])
-  }
-
-  setNewQtdDaily(row: Order, qtdDaily: number | string) {
-    const element = this.tableData.find(element => element.idClientProduct === row.idClientProduct)
-    if(element) { element.qtdDaily = Number(qtdDaily) }
-  }
-
-  setNewQtdDelivery(row: Order, qtdDelivery: number | string) {
-    const element = this.tableData.find(element => element.idClientProduct === row.idClientProduct)
-    if(element) { element.qtdDelivery = Number(qtdDelivery) }
-  }
-
-  setNewClientCommentary(row: Order, clientCommentary: string) {
-    const element = this.tableData.find(element => element.idClientProduct === row.idClientProduct)
-    if(element) { element.clientCommentary = clientCommentary }
-  }
-
-  setNewTeCommentary(row: Order, teCommentary: string) {
-    const element = this.tableData.find(element => element.idClientProduct === row.idClientProduct)
-    if(element) { element.teCommentary = teCommentary }
-  }
-
-  async importData() {
-    console.log('Dados a serem importados:', this.tableData);
-    // const response = await firstValueFrom(this.#fetch.post(this.tableData))
-    // if((response as GenericPostResponse).message) {
-    //   const message = (response as GenericPostResponse).message
-    //   this.#dialog.open({ title: 'Alerta', message })
-    // }
-    await this.#router.navigate(['/home'])
   }
 
   get title() { return 'Importar Dados' }

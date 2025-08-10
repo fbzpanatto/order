@@ -10,6 +10,7 @@
         <h2>selecione um arquivo <span>.csv</span></h2>
         <h3>
           <span>(idClientProduct, idTeProduct, cover, qtdDaily, description, clientCommentary, teCommentary, qtdDelivery)</span>
+          <span>valores decimais no campo cover separados por vírgula (ex: 12,50).</span>
         </h3>
         <h4>
           <span>ABC123,TE-456,12.50,100,Connector 24AWG,Client needs urgently,Quality checked,95</span>
@@ -51,19 +52,11 @@
               <td class="sticky-left">{{ row.idClientProduct }}</td>
               <td>{{ row.idTeProduct }}</td>
               <td class="center">{{ row.cover | number:'1.2-2' }}</td>
-              <td class="center">
-                <input #qtdDailyInput (blur)="setNewQtdDaily(row, qtdDailyInput.value)" maxlength="6" [value]="row.qtdDaily">
-              </td>
+              <td class="center">{{ row.qtdDaily }}</td>
               <td>{{ row.description }}</td>
-              <td>
-                <input #clientCommentaryInput (blur)="setNewClientCommentary(row, clientCommentaryInput.value)" [value]="row.clientCommentary">
-              </td>
-              <td>
-                <input #teCommentaryInput (blur)="setNewTeCommentary(row, teCommentaryInput.value)" [value]="row.teCommentary">
-              </td>
-              <td class="center">
-                <input #qtdDeliveryInput (blur)="setNewQtdDelivery(row, qtdDeliveryInput.value)" maxlength="6" [value]="row.qtdDelivery">
-              </td>
+              <td>{{ row.clientCommentary }}</td>
+              <td>{{ row.teCommentary }}</td>
+              <td class="center">{{ row.qtdDelivery }}</td>
             </tr>
           }
         </tbody>
