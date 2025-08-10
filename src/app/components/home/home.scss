@@ -2,7 +2,7 @@
 
 .home-wrapper {
   height: calc(100vh - $topBarHeight);
-  background: #f5f7fa;
+  background: $te-light;
 
   .options-container {
     display: grid;
@@ -23,16 +23,16 @@
 
       &:hover {
         cursor: pointer;
-        border: 1px solid #2ECC71;
+        border: 1px solid $te-primary;
         transform: translateY(5px);
-        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 15px 35px rgba($te-primary, 0.2);
       }
 
       .left-side {
         display: flex;
         align-items: center;
         justify-content: center;
-        background: linear-gradient(135deg, #1E63B5, #2ECC71);
+        background: linear-gradient(135deg, $te-primary, $te-secondary);
         color: white;
         border-radius: 50%;
         width: 60px;
@@ -49,7 +49,7 @@
         h6 {
           font-size: 1.1rem;
           font-weight: 600;
-          color: #2C3E50;
+          color: $te-neutral;
           margin: 0;
           font-family: 'Montserrat', sans-serif;
         }

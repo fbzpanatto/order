@@ -1,5 +1,13 @@
 $topBarHeight: 56px;
 
+// TE Connectivity Color Palette
+$te-primary: #E67E22;        // Laranja principal TE
+$te-secondary: #F39C12;      // Laranja secundário TE
+$te-dark: #D35400;          // Laranja escuro TE
+$te-neutral: #2C3E50;       // Azul escuro (mantido)
+$te-light: #F8F9FA;         // Cinza claro
+$te-accent: #FF6B35;        // Laranja vibrante para acentos
+
 @mixin card-style {
   position: relative;
   display: flex;
@@ -12,7 +20,7 @@ $topBarHeight: 56px;
   transition: all 0.3s ease;
   gap: 16px;
   padding: 20px;
-  color: #2C3E50;
+  color: $te-neutral;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: wrap;

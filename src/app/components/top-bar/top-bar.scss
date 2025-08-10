@@ -1,7 +1,7 @@
 @use '../../styles/variables.scss' as *;
 
 :host {
-  background: #2C3E50;
+  background: $te-neutral;
   border-bottom: 1px solid rgba(0, 0, 0, 0.05);
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
   height: $topBarHeight;
@@ -20,7 +20,13 @@
     &.left-side, &.right-side {
       button:has(mat-icon[svgIcon='home']),
       button:has(mat-icon[svgIcon='exit_to_app']){
-        background: #1B64B3;
+        background: $te-primary;
+        transition: background-color 0.3s ease;
+
+        &:hover {
+          background: $te-dark;
+        }
+
         mat-icon {
           @include center-icon;
           color: #fff;
