@@ -1,0 +1,272 @@
+@use "variables.scss" as *;
+
+.table-content {
+  position: relative;
+  top: 0;
+  overflow: auto;
+  height: calc(100vh - $topBarHeight);
+  width: 100%;
+  border-radius: 10px;
+
+  &::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #f5f7fa;
+    border-radius: 4px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #e0e0e0;
+    border-radius: 4px;
+
+    &:hover {
+      background: #7F8C8D;
+    }
+  }
+
+  table {
+    width: 100%;
+    background-color: #FFFFFF;
+    border-spacing: 0;
+    overflow: auto;
+    font-family: 'Open Sans', sans-serif;
+    border-collapse: separate;
+
+    thead {
+      border-top: 1px solid #e0e0e0;
+      position: sticky;
+      top: 0;
+      left: 0;
+      z-index: 4;
+
+      tr {
+        th {
+          color: #2C3E50;
+          background: #f5f7fa;
+          text-transform: uppercase;
+          letter-spacing: 0.05rem;
+          font-weight: 600;
+          font-family: 'Montserrat', sans-serif;
+          z-index: 4;
+          border-bottom: 1px solid #e0e0e0;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          transition: all 0.3s ease;
+          text-align: center;
+
+          padding: 0 8px 8px;
+
+          font-size: 13px;
+
+          &:first-child {
+            border-top-left-radius: 10px;
+          }
+
+          &:last-child {
+            border-top-right-radius: 10px;
+          }
+
+          &:nth-child(2) {
+            border-left: none;
+          }
+
+          &.sticky-left {
+            position: sticky;
+            left: 0;
+            background: #f5f7fa;
+            z-index: 4;
+            color: #2C3E50;
+          }
+        }
+      }
+    }
+
+    tbody {
+      tr {
+        td {
+          color: #2C3E50;
+          z-index: 1;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          border-bottom: 1px solid #e0e0e0;
+          letter-spacing: 0.02rem;
+          padding: 8px;
+          font-size: 13px;
+
+          &.have-icon {
+            position: relative;
+            text-align: center;
+            div {
+              position: absolute;
+              top: 8px;
+              width: 100%;
+              mat-icon {
+                &:hover {
+                  cursor: pointer;
+                  transform: scale(1.1);
+                }
+              }
+            }
+          }
+
+          &.valid {
+            div {
+              position: relative;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              .status {
+                position: relative;
+                display: flex;
+                width: 95%;
+                margin: 0 auto;
+                height: 24px;
+                gap: 8px;
+                background: #2ECC71;
+                align-items: center;
+                justify-content: center;
+                color: #fff;
+                border-radius: 6px;
+                font-family: 'Montserrat', sans-serif;
+                font-weight: 600;
+                font-size: 12px;
+                transition: all 0.3s ease;
+                &:hover {
+                  background: #27AE60;
+                  cursor: pointer;
+                  transform: scale(1.1);
+                }
+              }
+            }
+
+          }
+
+          &.pointer {
+            &:hover {
+              cursor: pointer;
+              color: #1E63B5;
+            }
+          }
+
+          &.sticky-left {
+            position: sticky;
+            left: 0;
+            background: #FFFFFF;
+            border-bottom: 1px solid #e0e0e0;
+            z-index: 3;
+
+            .name {
+              overflow: hidden;
+              text-overflow: ellipsis;
+              white-space: nowrap;
+              min-width: 300px;
+              max-width: 300px;
+              width: 300px;
+              font-weight: 600;
+              color: #2C3E50;
+            }
+          }
+
+          &.center {
+            text-align: center;
+          }
+
+          &.right {
+            text-align: right;
+          }
+
+          input {
+            width: 100%;
+            padding: 8px;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 14px;
+            color: #2C3E50;
+            background: transparent;
+
+            &:hover {
+              cursor: pointer;
+            }
+
+            &:focus {
+              outline: none;
+            }
+          }
+
+          &:nth-child(2) {
+            border-left: none;
+          }
+        }
+
+        &.total-line {
+          position: sticky;
+          bottom: 0;
+          z-index: 3;
+
+          td {
+            background: #f5f7fa;
+            border-bottom: 1px solid #e0e0e0;
+            text-transform: uppercase;
+            font-weight: 600;
+            font-family: 'Montserrat', sans-serif;
+            border-top: 1px solid #e0e0e0;
+            color: #2C3E50;
+
+            padding: 12px 8px;
+            font-size: 12px;
+
+            &:first-child {
+              border-bottom-left-radius: 10px;
+            }
+
+            &:last-child {
+              border-bottom-right-radius: 10px;
+            }
+          }
+        }
+
+        &:nth-last-child(2) {
+          td {
+            border-bottom: none;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+
+  .table-content {
+    table {
+      tbody {
+        tr {
+          td {
+            &.sticky-left {
+              position: sticky;
+              left: 0;
+              background: #FFFFFF;
+              border-bottom: 1px solid #e0e0e0;
+              z-index: 3;
+
+              .name {
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                min-width: 150px;
+                max-width: 150px;
+                width: 150px;
+                font-weight: 600;
+                color: #2C3E50;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

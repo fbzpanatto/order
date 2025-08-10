@@ -13,7 +13,7 @@ import { TopBar } from "../top-bar/top-bar";
   selector: 'app-import-data',
   imports: [CommonModule, MatFabButton, MatIcon, TopBar],
   templateUrl: './import-data.html',
-  styleUrl: './import-data.scss'
+  styleUrls: ['../../styles/table.scss', './import-data.scss']
 })
 export class ImportData {
 
@@ -69,9 +69,21 @@ export class ImportData {
   processFileContent(content: string) {
     console.log('Conteúdo do arquivo:', content);
 
-    this.tableData = content
-      .split('\n')
-      .filter(row => row.trim() !== '')
+    // Remover possível cabeçalho se existe
+    const lines = content.split('\n').filter(row => row.trim() !== '');
+
+    // Se a primeira linha contém cabeçalhos (texto), pula ela
+    let startIndex = 0;
+    if (lines.length > 0) {
+      const firstLine = lines[0].split(',');
+      // Verifica se é cabeçalho checando se algum campo não é numérico onde deveria ser
+      if (firstLine.length >= 8 && isNaN(Number(firstLine[2])) && isNaN(Number(firstLine[3]))) {
+        startIndex = 1; // Pula a primeira linha (cabeçalho)
+      }
+    }
+
+    this.tableData = lines
+      .slice(startIndex)
       .reduce((acc: Order[], prev) => {
         const el = prev.split(',')
 
