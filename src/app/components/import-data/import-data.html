@@ -1,1 +1,77 @@
-<p>import-data works!</p>
+<app-top-bar></app-top-bar>
+
+<div class="import-data-wrapper">
+
+  @if(!(tableData.length > 0)) {
+
+    <div class="import-file-content">
+
+      <div class="tutorial">
+        <h2>selecione um arquivo <span>.csv</span></h2>
+        <h3>
+          <span>(idClientProduct, idTeProduct, cover, qtdDaily, description, clientCommentary, teCommentary, qtdDelivery)</span>
+          <span>valores decimais no campo cover separados por vírgula (ex: 12,50).</span>
+        </h3>
+        <h4>
+          <span>ABC123,TE-456,12.50,100,Connector 24AWG,Client needs urgently,Quality checked,95</span>
+          <span>DEF789,TE-789,25.75,200,Terminal Block,Standard delivery,Approved specs,180</span>
+          <span>GHI012,TE-012,8.90,50,Capacitor 100nF,Handle with care,Tested OK,48</span>
+          <span>JKL345,TE-345,15.00,300,Wire Harness,Custom length,Ready to ship,290</span>
+        </h4>
+      </div>
+
+      <input #fileInput type="file" accept=".csv,.txt" (change)="onFileSelected($event)" hidden />
+      <div class="button" (click)="openFileInput()">
+        <div class="left-side">
+          <mat-icon svgIcon="add"></mat-icon>
+        </div>
+        <div class="right-side">
+          <h6>Selecione um arquivo...</h6>
+        </div>
+      </div>
+
+    </div>
+  } @else {
+    <div class="table-content">
+      <table>
+        <thead>
+        <tr>
+          <th class="sticky-left">ID Cliente</th>
+          <th>ID TE</th>
+          <th>Cover</th>
+          <th class="fixed-width">Qtd Diária</th>
+          <th>Descrição</th>
+          <th>Comentário Cliente</th>
+          <th>Comentário TE</th>
+          <th class="fixed-width">Qtd Entrega</th>
+        </tr>
+        </thead>
+        <tbody>
+          @for(row of tableData; track $index) {
+            <tr>
+              <td class="sticky-left">{{ row.idClientProduct }}</td>
+              <td>{{ row.idTeProduct }}</td>
+              <td class="center">{{ row.cover | number:'1.2-2' }}</td>
+              <td class="center">
+                <input #qtdDailyInput (blur)="setNewQtdDaily(row, qtdDailyInput.value)" maxlength="6" [value]="row.qtdDaily">
+              </td>
+              <td>{{ row.description }}</td>
+              <td>
+                <input #clientCommentaryInput (blur)="setNewClientCommentary(row, clientCommentaryInput.value)" [value]="row.clientCommentary">
+              </td>
+              <td>
+                <input #teCommentaryInput (blur)="setNewTeCommentary(row, teCommentaryInput.value)" [value]="row.teCommentary">
+              </td>
+              <td class="center">
+                <input #qtdDeliveryInput (blur)="setNewQtdDelivery(row, qtdDeliveryInput.value)" maxlength="6" [value]="row.qtdDelivery">
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+    <button (click)="importData()" class="mat-fab" mat-fab>
+      <mat-icon svgIcon="add"></mat-icon>
+    </button>
+  }
+</div>
