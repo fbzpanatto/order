@@ -126,6 +126,7 @@
             z-index: 3;
             font-weight: 600;
             color: $te-primary;
+            transition: background-color 0.2s ease;
 
             .name {
               overflow: hidden;
@@ -202,9 +203,9 @@
           }
         }
 
-        &:nth-last-child(2) {
+        &:nth-last-child(1) {
           td {
-            border-bottom: none;
+            border-bottom: 1px solid #e0e0e0;
           }
         }
       }
