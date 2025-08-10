@@ -24,6 +24,7 @@ class Initializers {
   get icons() {
     return [
       'add',
+      'order',
       'home'
     ]
   }
